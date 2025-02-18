@@ -2,17 +2,26 @@ import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
-import { fetchIndex } from '@/api';
+import { fetchHoaDetails } from '@/api';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const HoaDetails = () => {
-	const { tokens, setNotifications } = useAuth();
+	const { tokens } = useAuth();
+	const { id } = useParams();
+	const navigate = useNavigate();
 	const { data } = useQuery({
-		queryKey: ['dashboard'],
-		queryFn: async () => fetchIndex(tokens?.token),
+		queryKey: ['hoas', id],
+		queryFn: async () => fetchHoaDetails(tokens?.token, id),
 	});
+
 	useEffect(() => {
-		if (data?.notifications) {
-			setNotifications(data?.notifications);
+		if (!id) {
+			navigate(-1);
+		}
+	}, [id, navigate]);
+	useEffect(() => {
+		if (data) {
+			console.log('data', data);
 		}
 	}, [data]);
 	return (

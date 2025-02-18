@@ -21,9 +21,7 @@ const DashboardLayout = () => {
 					sideMenu ? 'visible opacity-1' : '  invisible opacity-0 '
 				}`}
 				onClick={() => setSideMenu(!sideMenu)}
-			>
-				{' '}
-			</div>
+			></div>
 
 			<div className="tp-main-content lg:ml-[250px] xl:ml-[300px] w-[calc(100% - 300px)]">
 				<Header
