@@ -4,7 +4,6 @@ import { fetchNotifications } from '@/api';
 import { Card } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
-
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';
 import { avatarImage } from '@/data';
 import { EllipsisVertical } from 'lucide-react';

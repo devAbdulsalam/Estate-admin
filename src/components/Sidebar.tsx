@@ -4,7 +4,15 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import logo from '@/assets/icon2.png';
 import { topMenuLinks, bottomMenuLinks } from '@/data';
 import { useAuth } from '@/contexts/AuthContext';
-const Sidebar = ({ sideMenu, setSideMenu, setIsLogoutModal }: any) => {
+const Sidebar = ({
+	sideMenu,
+	setSideMenu,
+	setIsLogoutModal,
+}: {
+	sideMenu: boolean;
+	setSideMenu: (isModal: boolean) => void;
+	setIsLogoutModal: () => void;
+}) => {
 	const navigate = useNavigate();
 	const [nav, setNav] = useState<string | null>('/dashboard');
 	const { notifications } = useAuth();
@@ -153,7 +161,7 @@ const Sidebar = ({ sideMenu, setSideMenu, setIsLogoutModal }: any) => {
 						))}
 					</ul>
 					<button
-						onClick={() => setIsLogoutModal(true)}
+						onClick={setIsLogoutModal}
 						className="group rounded-md bg-red-200 hover:bg-red-300 relative text-black text-lg font-medium inline-flex items-center w-full transition-colors ease-in-out duration-300 px-5 py-[9px] mb-3 sidebar-NavLink-active"
 					>
 						<span className="inline-block translate-y-[1px] mr-[10px] text-xl">

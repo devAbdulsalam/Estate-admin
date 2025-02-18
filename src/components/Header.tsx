@@ -8,7 +8,15 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Dialog, Menu, Transition } from '@headlessui/react';
 const userImage = 'https://xsgames.co/randomusers/assets/avatars/male/64.jpg';
 
-function Header({ sideMenu, setSideMenu, setIsLogoutModal }: any) {
+function Header({
+	sideMenu,
+	setSideMenu,
+	setIsLogoutModal,
+}: {
+	sideMenu: boolean;
+	setSideMenu: (isModal: boolean) => void;
+	setIsLogoutModal: () => void;
+}) {
 	const { user, notifications } = useAuth();
 	const [isOpen, setIsOpen] = useState(false);
 	const navigate = useNavigate();
@@ -217,7 +225,7 @@ function Header({ sideMenu, setSideMenu, setIsLogoutModal }: any) {
 										</li>
 										<li>
 											<button
-												onClick={() => setIsLogoutModal(true)}
+												onClick={setIsLogoutModal}
 												className="text-left px-5 py-2 w-full block bg-red-300 hover:bg-red-400 rounded-md hover:text-theme text-base"
 											>
 												Logout
