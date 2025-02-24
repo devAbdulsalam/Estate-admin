@@ -100,7 +100,25 @@ export const fetchPayments = async (token: string) => {
 	try {
 		console.log('index res', token);
 		const data = await axios
-			.get(`${apiUrl}/admins/notifications`, config)
+			.get(`${apiUrl}/admins/payments`, config)
+			.then((res) => res.data);
+		console.log('index res', data);
+		return data;
+	} catch (error: any) {
+		console.log(error.message);
+		return error;
+	}
+};
+export const fetchPayment = async (token: string, id: string) => {
+	const config = {
+		headers: {
+			Authorization: `Bearer ${token}`,
+		},
+	};
+	try {
+		console.log('index res', token);
+		const data = await axios
+			.get(`${apiUrl}/admins/payments/${id}`, config)
 			.then((res) => res.data);
 		console.log('index res', data);
 		return data;

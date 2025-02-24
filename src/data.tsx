@@ -1,10 +1,18 @@
-import { House, Building2, ChartPie, LifeBuoy, Settings } from 'lucide-react';
+import {
+	House,
+	Building2,
+	ChartPie,
+	LifeBuoy,
+	Settings,
+	Banknote,
+} from 'lucide-react';
 
 export const avatarImage = 'https://xsgames.co/randomusers/assets/avatars/male/64.jpg';
 
 export const topMenuLinks = [
 	{ label: 'Home', href: '/dashboard', icon: House },
 	{ label: 'Hoa management', href: '/hoas', icon: Building2 },
+	{ label: 'Payments', href: '/payments', icon: Banknote },
 	{ label: 'Report', href: '/reports', icon: ChartPie },
 ];
 

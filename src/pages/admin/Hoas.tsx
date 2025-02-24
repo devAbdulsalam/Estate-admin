@@ -48,6 +48,7 @@ interface Customer {
 	totalMenbers: number;
 }
 import { avatarImage } from '@/data';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const Hoas = () => {
 	const [currentPage, setCurrentPage] = useState(1);
@@ -56,6 +57,7 @@ const Hoas = () => {
 	const [isDeleteModal, setIsDeleteModal] = useState<boolean>(false);
 	const [item, setItem] = useState<string | null>(null);
 	const [hoas, setHoas] = useState([]);
+	const navigate = useNavigate();
 	const { tokens } = useAuth();
 	const { data } = useQuery({
 		queryKey: ['hoas'],
@@ -217,7 +219,10 @@ const Hoas = () => {
 						<TableBody>
 							{hoas?.map((hoa) => (
 								<TableRow key={hoa._id}>
-									<TableCell className="font-medium">
+									<TableCell
+										className="font-medium cursor-pointer"
+										onClick={() => navigate(`/hoas/${hoa?._id}`)}
+									>
 										<div className="flex items-center gap-3">
 											<Avatar>
 												<AvatarImage src={hoa.logo.url} />

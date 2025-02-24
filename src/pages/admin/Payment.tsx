@@ -1,25 +1,25 @@
-import React from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { useEffect } from 'react';
+import { fetchPayment } from '@/api';
 import { useAuth } from '@/contexts/AuthContext';
-import { fetchHoaDetails } from '@/api';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 import { Calendar } from 'lucide-react';
+import React, { useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { format } from 'date-fns';
 
-const HoaDetails = () => {
+const Index = () => {
 	const { tokens } = useAuth();
 	const { id } = useParams();
 	const navigate = useNavigate();
-	const { data } = useQuery({
-		queryKey: ['hoas', id],
-		queryFn: async () => fetchHoaDetails(tokens?.token, id),
-	});
-
 	useEffect(() => {
 		if (!id) {
 			navigate(-1);
 		}
 	}, [id, navigate]);
+
+	const { data } = useQuery({
+		queryKey: ['payments', id],
+		queryFn: async () => fetchPayment(tokens?.token, id),
+	});
 	useEffect(() => {
 		if (data) {
 			console.log('data', data);
@@ -36,16 +36,16 @@ const HoaDetails = () => {
 				<div className="flex items-center gap-4 mb-4 text-gray-600">
 					<div className="flex items-center gap-2">
 						<Calendar className="w-4 h-4" />
-						<span>{data?.date}</span>
+						<span>{format(data?.createdAt, 'MM/dd/yyyy')}</span>
 					</div>
 					<span>•</span>
-					<span>{data?.author}</span>
+					<span>{data?.userId?.name}</span>
 					<span>•</span>
-					<span className="text-ffms-primary">{data?.category}</span>
+					<span className="text-ffms-primary">{data?.status}</span>
 				</div>
-				<h1 className="text-4xl font-bold mb-6">{data?.title}</h1>
+				<h1 className="text-4xl font-bold mb-6">{data?.amount}</h1>
 				<div className="prose max-w-none">
-					{data?.content.split('\n\n').map((paragraph, index) => (
+					{data?.description.split('\n\n').map((paragraph, index) => (
 						<p key={index} className="mb-4 text-gray-700 leading-relaxed">
 							{paragraph}
 						</p>
@@ -56,4 +56,4 @@ const HoaDetails = () => {
 	);
 };
 
-export default HoaDetails;
+export default Index;

@@ -19,6 +19,8 @@ import DashboardLayout from './pages/admin/Layout';
 import NotFound from './NotFound';
 import Support from './pages/admin/Support';
 import Settings from './pages/admin/Settings';
+import Payments from './pages/admin/Payments';
+import Payment from './pages/admin/Payment';
 
 const queryClient = new QueryClient();
 
@@ -40,6 +42,8 @@ const App = () => (
 								<Route path="/dashboard" element={<AdminDashboard />} />
 								<Route path="/hoas" element={<Hoas />} />
 								<Route path="/hoas/:id" element={<HoaDetails />} />
+								<Route path="/payments" element={<Payments />} />
+								<Route path="/payments/:id" element={<Payment />} />
 								<Route path="/reports" element={<Reports />} />
 								<Route path="/notifications" element={<Notifications />} />
 								<Route path="/settings" element={<Settings />} />
