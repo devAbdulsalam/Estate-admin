@@ -250,7 +250,7 @@ const Hoas = () => {
 									</TableCell>
 									<TableCell>
 										<div className="flex items-center gap-2 relative">
-											{hoa.members.lenght > 0 ? (
+											{hoa.members.length > 0 ? (
 												<AvatarGroup>
 													{hoa.members.map((user, index) => (
 														<Avatar key={index}>
@@ -266,8 +266,8 @@ const Hoas = () => {
 												</Avatar>
 											)}
 											<p className="absolute top-0 right-0 rounded-full w-10 h-10 flex justify-center items-center text-sm bg-gray-100 text-primary">
-												{hoa?.members?.lenght > 0
-													? `+${hoa?.members?.lenght}`
+												{hoa?.members?.length > 0
+													? `+${hoa?.members?.length}`
 													: '0'}
 											</p>
 										</div>
@@ -295,41 +295,43 @@ const Hoas = () => {
 						</TableBody>
 					</Table>
 				</div>
-				<div className="border-t p-4">
-					<Pagination>
-						<PaginationContent>
-							<PaginationItem>
-								<PaginationPrevious href="#" />
-							</PaginationItem>
-							<PaginationItem>
-								<PaginationLink href="#" isActive>
-									1
-								</PaginationLink>
-							</PaginationItem>
-							<PaginationItem className="hidden md:block">
-								<PaginationLink href="#">2</PaginationLink>
-							</PaginationItem>
-							<PaginationItem className="hidden md:block">
-								<PaginationLink href="#">3</PaginationLink>
-							</PaginationItem>
-							<PaginationItem>
-								<PaginationEllipsis />
-							</PaginationItem>
-							<PaginationItem className="hidden md:block">
-								<PaginationLink href="#">8</PaginationLink>
-							</PaginationItem>
-							<PaginationItem className="hidden md:block">
-								<PaginationLink href="#">9</PaginationLink>
-							</PaginationItem>
-							<PaginationItem className="hidden md:block">
-								<PaginationLink href="#">10</PaginationLink>
-							</PaginationItem>
-							<PaginationItem>
-								<PaginationNext href="#" />
-							</PaginationItem>
-						</PaginationContent>
-					</Pagination>
-				</div>
+				{hoas?.length > 50 ? (
+					<div className="border-t p-4">
+						<Pagination>
+							<PaginationContent>
+								<PaginationItem>
+									<PaginationPrevious href="#" />
+								</PaginationItem>
+								<PaginationItem>
+									<PaginationLink href="#" isActive>
+										1
+									</PaginationLink>
+								</PaginationItem>
+								<PaginationItem className="hidden md:block">
+									<PaginationLink href="#">2</PaginationLink>
+								</PaginationItem>
+								<PaginationItem className="hidden md:block">
+									<PaginationLink href="#">3</PaginationLink>
+								</PaginationItem>
+								<PaginationItem>
+									<PaginationEllipsis />
+								</PaginationItem>
+								<PaginationItem className="hidden md:block">
+									<PaginationLink href="#">8</PaginationLink>
+								</PaginationItem>
+								<PaginationItem className="hidden md:block">
+									<PaginationLink href="#">9</PaginationLink>
+								</PaginationItem>
+								<PaginationItem className="hidden md:block">
+									<PaginationLink href="#">10</PaginationLink>
+								</PaginationItem>
+								<PaginationItem>
+									<PaginationNext href="#" />
+								</PaginationItem>
+							</PaginationContent>
+						</Pagination>
+					</div>
+				) : null}
 			</div>
 		</main>
 	);

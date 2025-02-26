@@ -47,7 +47,7 @@ const Payments = () => {
 								</TableRow>
 							</TableHeader>
 							<TableBody>
-								{data?.map((item) => (
+								{data?.length > 0 &&  data?.map((item) => (
 									<TableRow key={item?._id}>
 										<TableCell
 											className="cursor-pointer"

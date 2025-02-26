@@ -33,7 +33,13 @@ const formSchema = z.object({
 			message: 'Total members must be a positive number',
 		}),
 });
-const Modal = ({ isOpen, closeModal }: any) => {
+const Modal = ({
+	isOpen,
+	closeModal,
+}: {
+	isOpen: boolean;
+	closeModal: () => void;
+}) => {
 	const [image, setImage] = useState<File>();
 	const [imageUrl, setImageUrl] = useState<string>();
 	const [isLoading, setIsLoading] = useState<boolean>(false);

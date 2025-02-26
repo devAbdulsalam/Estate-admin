@@ -273,10 +273,10 @@ const AdminDashboard = () => {
 											<TableCell>
 												<div
 													className={`flex items-center gap-2 relative ${
-														hoa?.members?.lenght > 0 ? 'w-full' : 'w-fit'
+														hoa?.members?.length > 0 ? 'w-full' : 'w-fit'
 													}`}
 												>
-													{hoa?.members?.lenght > 0 ? (
+													{hoa?.members?.length > 0 ? (
 														<AvatarGroup>
 															{hoa?.members?.map((user, index) => (
 																<Avatar key={index}>
@@ -294,8 +294,8 @@ const AdminDashboard = () => {
 														</Avatar>
 													)}
 													<p className="absolute top-0 right-0 rounded-full w-10 h-10 flex justify-center items-center text-sm bg-gray-100 text-primary">
-														{hoa?.members?.lenght > 0
-															? `+${hoa?.members?.lenght}`
+														{hoa?.members?.length > 0
+															? `+${hoa?.members?.length}`
 															: '0'}
 													</p>
 												</div>

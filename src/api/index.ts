@@ -54,6 +54,42 @@ export const fetchHoaDetails = async (token: string, id: string) => {
 		return error;
 	}
 };
+export const fetchEstates = async (token: string, id: string) => {
+	const config = {
+		headers: {
+			Authorization: `Bearer ${token}`,
+		},
+	};
+	try {
+		console.log('index res', token);
+		const data = await axios
+			.get(`${apiUrl}/admins/estates`, config)
+			.then((res) => res.data);
+		console.log('index res', data);
+		return data;
+	} catch (error: any) {
+		console.log(error.message);
+		return error;
+	}
+};
+export const fetchEstateDetails = async (token: string, id: string) => {
+	const config = {
+		headers: {
+			Authorization: `Bearer ${token}`,
+		},
+	};
+	try {
+		console.log('index res', token);
+		const data = await axios
+			.get(`${apiUrl}/admins/estates/${id}`, config)
+			.then((res) => res.data);
+		console.log('index res', data);
+		return data;
+	} catch (error: any) {
+		console.log(error.message);
+		return error;
+	}
+};
 export const fetchReports = async (token: string) => {
 	const config = {
 		headers: {
