@@ -36,6 +36,8 @@ const Sidebar = ({
 		}
 		setSideMenu(!sideMenu);
 	};
+
+		console.log('side notifications', notifications);
 	const handleResize = () => {
 		const screenWidth = window.innerWidth;
 		setIsMobile(screenWidth <= 1024); // Set a threshold for tablet screen size (e.g., 1024 pixels)

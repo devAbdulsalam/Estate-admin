@@ -5,6 +5,7 @@ import {
 	LifeBuoy,
 	Settings,
 	Banknote,
+	User,
 } from 'lucide-react';
 
 export const avatarImage = 'https://xsgames.co/randomusers/assets/avatars/male/64.jpg';
@@ -14,6 +15,7 @@ export const topMenuLinks = [
 	{ label: 'Hoa management', href: '/hoas', icon: Building2 },
 	{ label: 'Payments', href: '/payments', icon: Banknote },
 	{ label: 'Report', href: '/reports', icon: ChartPie },
+	{ label: 'Users', href: '/users', icon: User },
 ];
 
 export const bottomMenuLinks = [

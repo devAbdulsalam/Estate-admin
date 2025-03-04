@@ -15,8 +15,9 @@ const Notifications = () => {
 		queryFn: async () => fetchNotifications(tokens?.token),
 	});
 	useEffect(() => {
+		console.log('data', data);
 		setNotifications(null);
-	}, []);
+	}, [data]);
 	return (
 		<div className="min-h-screen bg-white">
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">

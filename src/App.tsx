@@ -21,6 +21,8 @@ import Support from './pages/admin/Support';
 import Settings from './pages/admin/Settings';
 import Payments from './pages/admin/Payments';
 import Payment from './pages/admin/Payment';
+import Users from './pages/admin/Users';
+import User from './pages/admin/User';
 
 const queryClient = new QueryClient();
 
@@ -40,6 +42,8 @@ const App = () => (
 						<Route path="/" element={<ProtectedRoute />}>
 							<Route path="/" element={<DashboardLayout />}>
 								<Route path="/dashboard" element={<AdminDashboard />} />
+								<Route path="/users" element={<Users />} />
+								<Route path="/users/:id" element={<User />} />
 								<Route path="/hoas" element={<Hoas />} />
 								<Route path="/hoas/:id" element={<HoaDetails />} />
 								<Route path="/payments" element={<Payments />} />
