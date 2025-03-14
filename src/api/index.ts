@@ -199,3 +199,21 @@ export const fetchPayment = async (token: string, id: string) => {
 		return error;
 	}
 };
+export const fetchInvoices = async (token: string) => {
+	const config = {
+		headers: {
+			Authorization: `Bearer ${token}`,
+		},
+	};
+	try {
+		console.log('index res', token);
+		const data = await axios
+			.get(`${apiUrl}/admins/invoices`, config)
+			.then((res) => res.data);
+		console.log('index res', data);
+		return data;
+	} catch (error: any) {
+		console.log(error.message);
+		return error;
+	}
+};

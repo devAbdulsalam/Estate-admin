@@ -23,6 +23,7 @@ import Payments from './pages/admin/Payments';
 import Payment from './pages/admin/Payment';
 import Users from './pages/admin/Users';
 import User from './pages/admin/User';
+import Invoices from './pages/admin/Invoices';
 
 const queryClient = new QueryClient();
 
@@ -48,6 +49,7 @@ const App = () => (
 								<Route path="/hoas/:id" element={<HoaDetails />} />
 								<Route path="/payments" element={<Payments />} />
 								<Route path="/payments/:id" element={<Payment />} />
+								<Route path="/invoices" element={<Invoices />} />
 								<Route path="/reports" element={<Reports />} />
 								<Route path="/notifications" element={<Notifications />} />
 								<Route path="/settings" element={<Settings />} />

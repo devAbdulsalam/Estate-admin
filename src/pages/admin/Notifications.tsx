@@ -21,7 +21,7 @@ const Notifications = () => {
 	return (
 		<div className="min-h-screen bg-white">
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-				<h1 className="text-2xl font-bold text-center mb-8">Notifications</h1>
+				<h1 className="text-2xl font-bold  mb-8">Notifications</h1>
 				<div>
 					<Card>
 						<Table>
