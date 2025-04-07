@@ -38,6 +38,8 @@ const Modal = ({
 	closeModal: () => void;
 }) => {
 	const [isLoading, setIsLoading] = useState<boolean>(false);
+	const [image, setImage] = useState<File>();
+	const [imageUrl, setImageUrl] = useState<string>();
 	const { tokens } = useAuth();
 	const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -51,13 +53,27 @@ const Modal = ({
 		},
 	});
 
+
+		const handleImageDrop = (e: React.DragEvent<HTMLDivElement>) => {
+			e.preventDefault();
+			const droppedFiles = Array.from(e.dataTransfer.files);
+	
+			// Filter only image files
+			const validImageFiles = droppedFiles.filter((file) =>
+				file.type.startsWith('image/')
+			);
+	
+			if (validImageFiles.length > 0) {
+				const selectedFile = validImageFiles[0]; // Process only the first image
+				const url = URL.createObjectURL(selectedFile);
+	
+				setImageUrl(url); // Assuming setImageUrl is a state setter for previewing the image
+				setImage(selectedFile); // Assuming setImage stores the file object
+			}
+		};
+
 	const mutation = useMutation({
-		mutationFn: async (formData: {
-			name: string;
-			description: string;
-			address: string;
-			hoaId: string;
-		}) => {
+		mutationFn: async (formData: FormData) => {
 			const config = {
 				headers: {
 					Authorization: `Bearer ${tokens?.token}`,
@@ -83,8 +99,19 @@ const Modal = ({
 	const onSubmit = async (values: z.infer<typeof formSchema>) => {
 		setIsLoading(true);
 		try {
+			// Create FormData object and append values
+			const formData = new FormData();
+			Object.entries(values).forEach(([key, value]) => {
+				formData.append(key, value as string);
+			});
+
+			if (image) {
+				formData.append('logo', image);
+			}
+			formData.append('hoaId', hoaId);
+			
 			// Trigger mutation
-			await mutation.mutateAsync({ ...values, hoaId });
+			await mutation.mutateAsync(formData);
 		} catch (error) {
 			const message = getError(error);
 			toast.error(message);
@@ -160,6 +187,49 @@ const Modal = ({
 												</FormItem>
 											)}
 										/>
+
+										<div>
+											<FormLabel>Upload Logo</FormLabel>
+											<div
+												className="mt-2 border-2 border-dashed border-gray-300 rounded-lg p-6 cursor-pointer hover:border-gray-400 transition-colors"
+												onDragOver={(e) => e.preventDefault()}
+												onDrop={handleImageDrop}
+												onClick={() =>
+													document.getElementById('fileInput')?.click()
+												}
+											>
+												{imageUrl ? (
+													<img
+														src={imageUrl}
+														alt="Preview image"
+														className="w-full h-24 object-cover rounded-lg"
+													/>
+												) : null}
+												<input
+													type="file"
+													id="fileInput"
+													accept="image/*"
+													className="hidden"
+													onChange={(e) => {
+														if (e.target.files && e.target.files.length > 0) {
+															const file = e.target.files[0]; // Get the first selected file
+															setImage(file);
+															const url = URL.createObjectURL(file);
+															setImageUrl(url);
+														}
+													}}
+												/>
+
+												<div className="text-center">
+													<p className="text-gray-600">
+														Drop files here to upload...
+													</p>
+													<p className="text-sm text-gray-500 mt-1">
+														or click to browse
+													</p>
+												</div>
+											</div>
+										</div>
 										<Button
 											disabled={isLoading}
 											type="submit"

@@ -37,7 +37,7 @@ const Sidebar = ({
 		setSideMenu(!sideMenu);
 	};
 
-		console.log('side notifications', notifications);
+	console.log('side notifications', notifications);
 	const handleResize = () => {
 		const screenWidth = window.innerWidth;
 		setIsMobile(screenWidth <= 1024); // Set a threshold for tablet screen size (e.g., 1024 pixels)
@@ -113,7 +113,7 @@ const Sidebar = ({
 										nav == item.href
 											? 'bg-primary hover:bg-primary-foreground text-theme'
 											: ''
-									} group rounded-md relative text-black text-lg font-medium inline-flex items-center w-full transition-colors ease-in-out duration-300 px-4 py-[9px] mb-2 hover:bg-gray-100 sidebar-NavLink-active`}
+									} group rounded-md relative text-black text-lg  font-medium inline-flex items-center w-full transition-colors ease-in-out duration-300 px-4 py-[9px] mb-2 hover:bg-gray-100 sidebar-NavLink-active`}
 								>
 									<item.icon className="inline-block  mr-[10px] text-lg" />
 									{item.label}

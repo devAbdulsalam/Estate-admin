@@ -217,3 +217,4 @@ export const fetchInvoices = async (token: string) => {
 		return error;
 	}
 };
+

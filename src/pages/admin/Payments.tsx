@@ -39,6 +39,9 @@ const Payments = () => {
 							<TableHeader>
 								<TableRow>
 									<TableHead className="w-[300px] whitespace-nowrap">
+										OrderId
+									</TableHead>
+									<TableHead className="w-[300px] whitespace-nowrap">
 										Amount
 									</TableHead>
 									<TableHead>Status</TableHead>

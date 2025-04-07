@@ -24,6 +24,7 @@ import Payment from './pages/admin/Payment';
 import Users from './pages/admin/Users';
 import User from './pages/admin/User';
 import Invoices from './pages/admin/Invoices';
+import Home from './pages/Home';
 
 const queryClient = new QueryClient();
 
@@ -36,6 +37,7 @@ const App = () => (
 					<Sonner />
 					<Routes>
 						<Route path="/" element={<Index />} />
+						<Route path="/home" element={<Home />} />
 						<Route path="/login" element={<Login />} />
 						<Route path="/register" element={<Register />} />
 						<Route path="/forgot-password" element={<ForgotPassword />} />
