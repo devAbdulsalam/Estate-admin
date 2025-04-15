@@ -15,7 +15,8 @@ export const topMenuLinks = [
 	{ label: 'Hoa management', href: '/hoas', icon: Building2 },
 	{ label: 'Invoices', href: '/invoices', icon: Banknote },
 	{ label: 'Payments', href: '/payments', icon: Banknote },
-	{ label: 'Report', href: '/reports', icon: ChartPie },
+	{ label: 'Issues', href: '/issues', icon: ChartPie },
+	{ label: 'Reports', href: '/reports', icon: ChartPie },
 	{ label: 'Users', href: '/users', icon: User },
 ];
 

@@ -26,7 +26,7 @@ const Notifications = () => {
 					<Card>
 						<Table>
 							<TableBody>
-								{data?.map((item) => (
+								{data?.length > 0 && data?.map((item) => (
 									<TableRow key={item?._id}>
 										<TableCell className="font-medium">
 											<div className="flex items-center gap-3 w-full">

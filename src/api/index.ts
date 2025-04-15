@@ -217,4 +217,39 @@ export const fetchInvoices = async (token: string) => {
 		return error;
 	}
 };
-
+export const fetchIssues = async (token: string) => {
+	const config = {
+		headers: {
+			Authorization: `Bearer ${token}`,
+		},
+	};
+	try {
+		console.log('index res', token);
+		const data = await axios
+			.get(`${apiUrl}/admins/reports`, config)
+			.then((res) => res.data);
+		console.log('index res', data);
+		return data;
+	} catch (error: any) {
+		console.log(error.message);
+		return error;
+	}
+};
+export const fetchIssueDetails = async (token: string, id: string) => {
+	const config = {
+		headers: {
+			Authorization: `Bearer ${token}`,
+		},
+	};
+	try {
+		console.log('index res', token);
+		const data = await axios
+			.get(`${apiUrl}/admins/reports/${id}`, config)
+			.then((res) => res.data);
+		console.log('index res', data);
+		return data;
+	} catch (error: any) {
+		console.log(error.message);
+		return error;
+	}
+};
