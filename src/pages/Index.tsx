@@ -13,7 +13,7 @@ const Index = () => {
 				navigate('/dashboard');
 				return;
 			} else {
-				navigate('/home');
+				navigate('/login');
 			}
 		}, 2000); // Show the page after 2 seconds
 	}, [user, navigate]);
