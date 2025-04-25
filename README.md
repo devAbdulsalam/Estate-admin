@@ -67,3 +67,16 @@ Simply open [Lovable](https://lovable.dev/projects/dbd8266c-d9c7-41b3-beb1-a5794
 ## I want to use a custom domain - is that possible?
 
 We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+
+
+Dreading the holiday humbug getting in the way of your deadlines? 🤯 Need a productivity haven to crush those tasks? 💪
+
+Escape to Officebox! 🏢✨ We've got the perfect spot for focused frenzy, equipped with:
+
+- Lightning-fast network (no buffering allowed! 📺)
+- Power supply that's more reliable than your favorite coffee shop ☕️
+- Snacks and drinks to fuel your productivity (and satisfy those late-night cravings 🍔👀)
+
+Choose from our flexible packages and join the productivity party! 🎉 Let's get that task done and celebrate the holidays stress-free! 🌴
+
+How's that?

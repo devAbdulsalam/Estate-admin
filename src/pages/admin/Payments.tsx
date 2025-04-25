@@ -17,6 +17,7 @@ import { EllipsisVertical } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { format } from 'date-fns';
+import { userRoles } from '../../../../server/Enum/index';
 
 const Payments = () => {
 	const { tokens } = useAuth();
@@ -54,6 +55,11 @@ const Payments = () => {
 									<TableRow key={item?._id}>
 										<TableCell
 											className="cursor-pointer"
+										>
+											{item?.user?.name}
+										</TableCell>
+										<TableCell
+											className=""
 											onClick={() => navigate(`/payments/${item?._id}`)}
 										>
 											{item?.amount}

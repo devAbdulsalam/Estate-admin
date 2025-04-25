@@ -43,13 +43,16 @@ const Invoices = () => {
 										S/N
 									</TableHead>
 									<TableHead className="w-[300px] whitespace-nowrap">
+										User
+									</TableHead>
+									<TableHead className="w-[300px] whitespace-nowrap">
 										Name
 									</TableHead>
 									<TableHead className="w-[300px] whitespace-nowrap">
 										Amount
 									</TableHead>
 									<TableHead>Duedate</TableHead>
-									<TableHead>Description</TableHead>
+									{/* <TableHead>Description</TableHead> */}
 									<TableHead className="w-[300px] whitespace-nowrap">
 										Status
 									</TableHead>
@@ -66,13 +69,19 @@ const Invoices = () => {
 												className="cursor-pointer capitalize"
 												// onClick={() => navigate(`/users/${item?._id}`)}
 											>
+												{item?.userId?.name}
+											</TableCell>
+											<TableCell
+												className="cursor-pointer capitalize"
+												// onClick={() => navigate(`/users/${item?._id}`)}
+											>
 												{item?.dueId?.name}
 											</TableCell>
 											<TableCell>{item?.amount}</TableCell>
 											<TableCell>{item?.dueDate}</TableCell>
-											<TableCell className="whitespace-nowrap">
+											{/* <TableCell className="whitespace-nowrap">
 												{item?.description}
-											</TableCell>
+											</TableCell> */}
 											<TableCell className="whitespace-nowrap">
 												{item?.status}
 											</TableCell>
