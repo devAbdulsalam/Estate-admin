@@ -91,7 +91,6 @@ const Login = () => {
 					className="relative z-20 flex items-center text-lg font-medium text-white"
 				>
 					<img src={icon} alt="" className="mr-2 h-12 w-12" />
-					GHPM
 				</Link>
 				<div className="flex h-full flex-col justify-end">
 					<div className="my-32">

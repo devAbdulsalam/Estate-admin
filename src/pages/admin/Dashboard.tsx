@@ -171,9 +171,9 @@ const AdminDashboard = () => {
 					<CardContent>
 						<div className="h-[300px] relative flex items-center justify-center flex-row-reverse">
 							<div className="absolute top-10">
-								{userHoaData.map((item, index) => {
+								{userHoaData?.map((item, index) => {
 									// Get the color from the COLORS array
-									const color = COLORS[index % COLORS.length];
+									const color = COLORS[index % COLORS?.length];
 
 									return (
 										<p key={index} className="text-xs text-right">
@@ -203,7 +203,7 @@ const AdminDashboard = () => {
 										{userHoaData?.map((entry, index) => (
 											<Cell
 												key={`cell-${index}`}
-												fill={COLORS[index % COLORS.length]}
+												fill={COLORS[index % COLORS?.length]}
 											/>
 										))}
 									</Pie>

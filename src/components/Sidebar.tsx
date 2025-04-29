@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { LogOut, Bell } from 'lucide-react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import logo from '@/assets/icon2.png';
+import logo from '@/assets/icon.png';
 import { topMenuLinks, bottomMenuLinks } from '@/data';
 import { useAuth } from '@/contexts/AuthContext';
 const Sidebar = ({

@@ -250,9 +250,9 @@ const Hoas = () => {
 									</TableCell>
 									<TableCell>
 										<div className="flex items-center gap-2 relative">
-											{hoa.members.length > 0 ? (
+											{hoa?.members?.length > 0 ? (
 												<AvatarGroup>
-													{hoa.members.map((user, index) => (
+													{hoa?.members?.map((user, index) => (
 														<Avatar key={index}>
 															<AvatarImage src={user.image || avatarImage} />
 															<AvatarFallback>U</AvatarFallback>
