@@ -16,7 +16,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/components/ui/use-toast';
 import bgImage from '@/assets/register.png';
-import icon from '@/assets/icon.png';
+import icon from '@/assets/logo.png';
 
 const registerSchema = z.object({
 	name: z.string().min(2, 'Name must be at least 2 characters'),

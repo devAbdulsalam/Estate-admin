@@ -17,7 +17,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/components/ui/use-toast';
 import bgImage from '@/assets/login.png';
-import icon from '@/assets/icon.png';
+import icon from '@/assets/logo.png';
 import Loader from '@/components/Loader';
 import { Eye, EyeOff } from 'lucide-react';
 
