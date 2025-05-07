@@ -17,10 +17,13 @@ import { EllipsisVertical } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { format } from 'date-fns';
+import InvoiceModal from '@/components/InvoiceModal';
 
 const Invoices = () => {
 	const { tokens } = useAuth();
-	const [users, setUsers] = useState([]);
+	const [invoices, setInvoices] = useState([]);
+	const [details, setDetails] = useState(null);
+	const [paymentModal, setPaymentModal] = useState(false);
 	const navigate = useNavigate();
 	const { data } = useQuery({
 		queryKey: ['invoices'],
@@ -28,8 +31,12 @@ const Invoices = () => {
 	});
     useEffect(() => {
         console.log('data', data);
-		setUsers(null);
+		setInvoices(data);
 	}, [data]);
+	const handlePaymentDetails = (item: any) => {
+		setDetails(item);
+		setPaymentModal(true);
+	};
 	return (
 		<div className="min-h-screen bg-white">
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -61,8 +68,8 @@ const Invoices = () => {
 								</TableRow>
 							</TableHeader>
 							<TableBody>
-								{data?.length > 0 &&
-									data?.map((item, index) => (
+								{invoices?.length > 0 &&
+									invoices?.map((item, index) => (
 										<TableRow key={item?._id}>
 											<TableCell>{index + 1}</TableCell>
 											<TableCell
@@ -89,7 +96,11 @@ const Invoices = () => {
 												{format(item?.updatedAt, 'MM/dd/yyyy')}
 											</TableCell>
 											<TableCell className="text-right">
-												<Button variant="ghost" size="icon">
+												<Button
+													variant="ghost"
+													size="icon"
+													onClick={() => handlePaymentDetails(item)}
+												>
 													<EllipsisVertical className="h-4 w-4" />
 												</Button>
 											</TableCell>
@@ -100,6 +111,12 @@ const Invoices = () => {
 					</Card>
 				</div>
 			</div>
+			<InvoiceModal
+				isModal={paymentModal}
+				setIsModal={setPaymentModal}
+				handelClick={() => {}}
+				data={details}
+			/>
 		</div>
 	);
 };

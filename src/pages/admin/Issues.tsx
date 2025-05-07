@@ -13,14 +13,17 @@ import {
 	TableRow,
 } from '@/components/ui/table';
 import { avatarImage } from '@/data';
+import { format } from 'date-fns';
 import { EllipsisVertical } from 'lucide-react';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 const Notifications = () => {
 	const { tokens } = useAuth();
 	const { data } = useQuery({
 		queryKey: ['issues'],
 		queryFn: async () => fetchIssues(tokens?.token),
 	});
+	const navigate = useNavigate();
 	return (
 		<div className="min-h-screen bg-white">
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -42,11 +45,11 @@ const Notifications = () => {
 									data?.map((item, index) => (
 										<TableRow key={item?._id}>
 											<TableCell className="font-medium">{index + 1}</TableCell>
-											<TableCell className="font-medium">
+											<TableCell className="font-medium capitalize">
 												{item.category}
 											</TableCell>
 											<TableCell className="font-medium">
-												{item.createdAt}
+												{format(item?.createdAt, 'MM/dd/yyyy')}
 											</TableCell>
 											<TableCell className="font-medium">
 												<span
@@ -62,7 +65,12 @@ const Notifications = () => {
 												</span>
 											</TableCell>
 											<TableCell className="text-right">
-												<Button variant="ghost" size="icon">
+												<Button
+													variant="ghost"
+													size="icon"
+													onClick={() => navigate(`/issues/${item?._id}`)}
+													// onClick={() => navigate(`/hoas/${hoa?._id}`)}
+												>
 													<EllipsisVertical className="h-4 w-4" />
 												</Button>
 											</TableCell>

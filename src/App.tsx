@@ -25,6 +25,7 @@ import Users from './pages/admin/Users';
 import User from './pages/admin/User';
 import Invoices from './pages/admin/Invoices';
 import Issues from './pages/admin/Issues';
+import IssueDetails from './pages/admin/IssueDetails';
 import Home from './pages/Home';
 
 const queryClient = new QueryClient();
@@ -54,6 +55,7 @@ const App = () => (
 								<Route path="/payments/:id" element={<Payment />} />
 								<Route path="/invoices" element={<Invoices />} />
 								<Route path="/issues" element={<Issues />} />
+								<Route path="/issues/:id" element={<IssueDetails />} />
 								<Route path="/reports" element={<Reports />} />
 								<Route path="/notifications" element={<Notifications />} />
 								<Route path="/settings" element={<Settings />} />

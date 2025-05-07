@@ -57,213 +57,215 @@ const Settings = () => {
 		}
 	};
 	return (
-		<main className="min-h-screen bg-gray-50 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-			<div className="flex justify-center my-5 p-2">
-				{tabs.map((tab) => (
-					<div
-						onClick={() => setCurrentTab(tab)}
-						className={`p-2 cursor-pointer border-b-2 ${
-							tab === currentTab
-								? 'text-primary border-b-primary '
-								: 'text-gray-300 border-b-gray-300'
-						}`}
-					>
-						{tab}
-					</div>
-				))}
+		<main className="min-h-screen bg-white">
+			<div className=" max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+				<div className="flex justify-center my-5 p-2">
+					{tabs.map((tab) => (
+						<div
+							onClick={() => setCurrentTab(tab)}
+							className={`p-2 cursor-pointer border-b-2 ${
+								tab === currentTab
+									? 'text-primary border-b-primary '
+									: 'text-gray-300 border-b-gray-300'
+							}`}
+						>
+							{tab}
+						</div>
+					))}
+				</div>
+				{currentTab === 'Profile' && (
+					<Card className="py-0">
+						<CardHeader className="flex flex-row items-center justify-between pb-5">
+							<CardTitle className="text-sm font-bold ">
+								Profile Information
+							</CardTitle>
+						</CardHeader>
+						<CardContent>
+							<div className="flex justify-start items-center gap-4 mb-5">
+								<div className="flex justify-start items-center gap-3">
+									<Avatar className="w-12 h-12">
+										<AvatarImage src={user?.profileImage?.url || avatarImage} />
+										<AvatarFallback>{user?.name[0]}</AvatarFallback>
+									</Avatar>
+								</div>
+								<div>
+									<Button size="sm" variant="outline" onClick={() => {}}>
+										Uplaod photo
+									</Button>
+								</div>
+							</div>
+							<Form {...form}>
+								<form
+									onSubmit={form.handleSubmit(onSubmit)}
+									className="space-y-4"
+								>
+									<FormField
+										control={form.control}
+										name="email"
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel>Email</FormLabel>
+												<FormControl>
+													<Input
+														type="email"
+														placeholder="appfur@gmail.com"
+														{...field}
+													/>
+												</FormControl>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
+								</form>
+							</Form>
+						</CardContent>
+					</Card>
+				)}
+				{currentTab === 'Users Management' && (
+					<Card className="py-0">
+						<CardHeader className="flex flex-row items-center justify-between pb-2">
+							<CardTitle className="text-sm font-bold text-gray-500">
+								Users Management
+							</CardTitle>
+						</CardHeader>
+						<CardContent>
+							<div className="flex justify-start items-center gap-4">
+								<div className="flex justify-start items-center gap-3">
+									<Avatar className="w-14 h-14">
+										<AvatarImage src={user?.profileImage?.url} />
+										<AvatarFallback>{user?.name[0]}</AvatarFallback>
+									</Avatar>
+								</div>
+								<div>
+									<Button size="sm" variant="default" onClick={() => {}}>
+										Uplaod photo
+									</Button>
+								</div>
+							</div>
+							<Form {...form}>
+								<form
+									onSubmit={form.handleSubmit(onSubmit)}
+									className="space-y-4"
+								>
+									<FormField
+										control={form.control}
+										name="email"
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel>Email</FormLabel>
+												<FormControl>
+													<Input
+														type="email"
+														placeholder="appfur@gmail.com"
+														{...field}
+													/>
+												</FormControl>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
+								</form>
+							</Form>
+						</CardContent>
+					</Card>
+				)}
+				{currentTab === 'Notification' && (
+					<Card className="py-0">
+						<CardHeader className="flex flex-row items-center justify-between pb-2">
+							<CardTitle className="text-sm font-bold text-gray-500">
+								Notification
+							</CardTitle>
+						</CardHeader>
+						<CardContent>
+							<div className="flex justify-start items-center gap-4">
+								<div className="flex justify-start items-center gap-3">
+									<Avatar className="w-14 h-14">
+										<AvatarImage src={user?.profileImage?.url} />
+										<AvatarFallback>{user?.name[0]}</AvatarFallback>
+									</Avatar>
+								</div>
+								<div>
+									<Button size="sm" variant="default" onClick={() => {}}>
+										Uplaod photo
+									</Button>
+								</div>
+							</div>
+							<Form {...form}>
+								<form
+									onSubmit={form.handleSubmit(onSubmit)}
+									className="space-y-4"
+								>
+									<FormField
+										control={form.control}
+										name="email"
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel>Email</FormLabel>
+												<FormControl>
+													<Input
+														type="email"
+														placeholder="appfur@gmail.com"
+														{...field}
+													/>
+												</FormControl>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
+								</form>
+							</Form>
+						</CardContent>
+					</Card>
+				)}
+				{currentTab === 'Report' && (
+					<Card className="py-0">
+						<CardHeader className="flex flex-row items-center justify-between pb-2">
+							<CardTitle className="text-sm font-bold text-gray-500">
+								Report
+							</CardTitle>
+						</CardHeader>
+						<CardContent>
+							<div className="flex justify-start items-center gap-4">
+								<div className="flex justify-start items-center gap-3">
+									<Avatar className="w-14 h-14">
+										<AvatarImage src={user?.profileImage?.url} />
+										<AvatarFallback>{user?.name[0]}</AvatarFallback>
+									</Avatar>
+								</div>
+								<div>
+									<Button size="sm" variant="default" onClick={() => {}}>
+										Uplaod photo
+									</Button>
+								</div>
+							</div>
+							<Form {...form}>
+								<form
+									onSubmit={form.handleSubmit(onSubmit)}
+									className="space-y-4"
+								>
+									<FormField
+										control={form.control}
+										name="email"
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel>Email</FormLabel>
+												<FormControl>
+													<Input
+														type="email"
+														placeholder="appfur@gmail.com"
+														{...field}
+													/>
+												</FormControl>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
+								</form>
+							</Form>
+						</CardContent>
+					</Card>
+				)}
 			</div>
-			{currentTab === 'Profile' && (
-				<Card className="py-0">
-					<CardHeader className="flex flex-row items-center justify-between pb-5">
-						<CardTitle className="text-sm font-bold ">
-							Profile Information
-						</CardTitle>
-					</CardHeader>
-					<CardContent>
-						<div className="flex justify-start items-center gap-4 mb-5">
-							<div className="flex justify-start items-center gap-3">
-								<Avatar className="w-12 h-12">
-									<AvatarImage src={user?.profileImage?.url || avatarImage} />
-									<AvatarFallback>{user?.name[0]}</AvatarFallback>
-								</Avatar>
-							</div>
-							<div>
-								<Button size="sm" variant="outline" onClick={() => {}}>
-									Uplaod photo
-								</Button>
-							</div>
-						</div>
-						<Form {...form}>
-							<form
-								onSubmit={form.handleSubmit(onSubmit)}
-								className="space-y-4"
-							>
-								<FormField
-									control={form.control}
-									name="email"
-									render={({ field }) => (
-										<FormItem>
-											<FormLabel>Email</FormLabel>
-											<FormControl>
-												<Input
-													type="email"
-													placeholder="appfur@gmail.com"
-													{...field}
-												/>
-											</FormControl>
-											<FormMessage />
-										</FormItem>
-									)}
-								/>
-							</form>
-						</Form>
-					</CardContent>
-				</Card>
-			)}
-			{currentTab === 'Users Management' && (
-				<Card className="py-0">
-					<CardHeader className="flex flex-row items-center justify-between pb-2">
-						<CardTitle className="text-sm font-bold text-gray-500">
-							Users Management
-						</CardTitle>
-					</CardHeader>
-					<CardContent>
-						<div className="flex justify-start items-center gap-4">
-							<div className="flex justify-start items-center gap-3">
-								<Avatar className="w-14 h-14">
-									<AvatarImage src={user?.profileImage?.url} />
-									<AvatarFallback>{user?.name[0]}</AvatarFallback>
-								</Avatar>
-							</div>
-							<div>
-								<Button size="sm" variant="default" onClick={() => {}}>
-									Uplaod photo
-								</Button>
-							</div>
-						</div>
-						<Form {...form}>
-							<form
-								onSubmit={form.handleSubmit(onSubmit)}
-								className="space-y-4"
-							>
-								<FormField
-									control={form.control}
-									name="email"
-									render={({ field }) => (
-										<FormItem>
-											<FormLabel>Email</FormLabel>
-											<FormControl>
-												<Input
-													type="email"
-													placeholder="appfur@gmail.com"
-													{...field}
-												/>
-											</FormControl>
-											<FormMessage />
-										</FormItem>
-									)}
-								/>
-							</form>
-						</Form>
-					</CardContent>
-				</Card>
-			)}
-			{currentTab === 'Notification' && (
-				<Card className="py-0">
-					<CardHeader className="flex flex-row items-center justify-between pb-2">
-						<CardTitle className="text-sm font-bold text-gray-500">
-							Notification
-						</CardTitle>
-					</CardHeader>
-					<CardContent>
-						<div className="flex justify-start items-center gap-4">
-							<div className="flex justify-start items-center gap-3">
-								<Avatar className="w-14 h-14">
-									<AvatarImage src={user?.profileImage?.url} />
-									<AvatarFallback>{user?.name[0]}</AvatarFallback>
-								</Avatar>
-							</div>
-							<div>
-								<Button size="sm" variant="default" onClick={() => {}}>
-									Uplaod photo
-								</Button>
-							</div>
-						</div>
-						<Form {...form}>
-							<form
-								onSubmit={form.handleSubmit(onSubmit)}
-								className="space-y-4"
-							>
-								<FormField
-									control={form.control}
-									name="email"
-									render={({ field }) => (
-										<FormItem>
-											<FormLabel>Email</FormLabel>
-											<FormControl>
-												<Input
-													type="email"
-													placeholder="appfur@gmail.com"
-													{...field}
-												/>
-											</FormControl>
-											<FormMessage />
-										</FormItem>
-									)}
-								/>
-							</form>
-						</Form>
-					</CardContent>
-				</Card>
-			)}
-			{currentTab === 'Report' && (
-				<Card className="py-0">
-					<CardHeader className="flex flex-row items-center justify-between pb-2">
-						<CardTitle className="text-sm font-bold text-gray-500">
-							Report
-						</CardTitle>
-					</CardHeader>
-					<CardContent>
-						<div className="flex justify-start items-center gap-4">
-							<div className="flex justify-start items-center gap-3">
-								<Avatar className="w-14 h-14">
-									<AvatarImage src={user?.profileImage?.url} />
-									<AvatarFallback>{user?.name[0]}</AvatarFallback>
-								</Avatar>
-							</div>
-							<div>
-								<Button size="sm" variant="default" onClick={() => {}}>
-									Uplaod photo
-								</Button>
-							</div>
-						</div>
-						<Form {...form}>
-							<form
-								onSubmit={form.handleSubmit(onSubmit)}
-								className="space-y-4"
-							>
-								<FormField
-									control={form.control}
-									name="email"
-									render={({ field }) => (
-										<FormItem>
-											<FormLabel>Email</FormLabel>
-											<FormControl>
-												<Input
-													type="email"
-													placeholder="appfur@gmail.com"
-													{...field}
-												/>
-											</FormControl>
-											<FormMessage />
-										</FormItem>
-									)}
-								/>
-							</form>
-						</Form>
-					</CardContent>
-				</Card>
-			)}
 			{isLoading && <Loader />}
 		</main>
 	);

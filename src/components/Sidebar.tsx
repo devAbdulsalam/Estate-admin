@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { LogOut, Bell } from 'lucide-react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import logo from '@/assets/icon.png';
+import logo from '@/assets/logo.png';
 import { topMenuLinks, bottomMenuLinks } from '@/data';
 import { useAuth } from '@/contexts/AuthContext';
 const Sidebar = ({
@@ -111,7 +111,7 @@ const Sidebar = ({
 									onClick={() => handleNav(item.href)}
 									className={`${
 										nav == item.href
-											? 'bg-primary hover:bg-primary-foreground text-theme'
+											? 'bg-primary hover:bg-primary-foreground text-white'
 											: ''
 									} group rounded-md relative text-black text-lg  font-medium inline-flex items-center w-full transition-colors ease-in-out duration-300 px-4 py-[9px] mb-2 hover:bg-gray-100 sidebar-NavLink-active`}
 								>

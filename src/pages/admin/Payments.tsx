@@ -18,10 +18,13 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { format } from 'date-fns';
 import { userRoles } from '../../../../server/Enum/index';
+import PaymentModal from '@/components/PaymentModal';
 
 const Payments = () => {
 	const { tokens } = useAuth();
 	const [payments, setPayments] = useState([]);
+	const [details, setDetails] = useState(null);
+	const [paymentModal, setPaymentModal] = useState(false);
 	const navigate = useNavigate();
 	const { data } = useQuery({
 		queryKey: ['payments'],
@@ -30,6 +33,11 @@ const Payments = () => {
 	useEffect(() => {
 		setPayments(null);
 	}, []);
+	const handlePaymentDetails = (item : any) => {
+		setDetails(item);
+		setPaymentModal(true);
+	};
+
 	return (
 		<div className="min-h-screen bg-white">
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -51,35 +59,42 @@ const Payments = () => {
 								</TableRow>
 							</TableHeader>
 							<TableBody>
-								{data?.length > 0 &&  data?.map((item) => (
-									<TableRow key={item?._id}>
-										<TableCell
-											className="cursor-pointer"
-										>
-											{item?.user?.name}
-										</TableCell>
-										<TableCell
-											className=""
-											onClick={() => navigate(`/payments/${item?._id}`)}
-										>
-											{item?.amount}
-										</TableCell>
-										<TableCell>{item?.status}</TableCell>
-										<TableCell>
-											{format(item?.date, 'MM/dd/yyyy')}
-										</TableCell>
-										<TableCell className="text-right">
-											<Button variant="ghost" size="icon">
-												<EllipsisVertical className="h-4 w-4" />
-											</Button>
-										</TableCell>
-									</TableRow>
-								))}
+								{data?.length > 0 &&
+									data?.map((item) => (
+										<TableRow key={item?._id}>
+											<TableCell className="cursor-pointer">
+												{item?.user?.name}
+											</TableCell>
+											<TableCell
+												className=""
+												onClick={() => navigate(`/payments/${item?._id}`)}
+											>
+												{item?.amount}
+											</TableCell>
+											<TableCell>{item?.status}</TableCell>
+											<TableCell>{format(item?.date, 'MM/dd/yyyy')}</TableCell>
+											<TableCell className="text-right">
+												<Button
+													variant="ghost"
+													size="icon"
+													onClick={() => handlePaymentDetails(item)}
+												>
+													<EllipsisVertical className="h-4 w-4" />
+												</Button>
+											</TableCell>
+										</TableRow>
+									))}
 							</TableBody>
 						</Table>
 					</Card>
 				</div>
 			</div>
+			<PaymentModal
+				isModal={paymentModal}
+				setIsModal={setPaymentModal}
+				handelClick={() => {}}
+				data={details}
+			/>
 		</div>
 	);
 };

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import index from '@/assets/gate.png';
+import index from '@/assets/logo.png';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 
