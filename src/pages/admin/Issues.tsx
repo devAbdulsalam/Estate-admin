@@ -69,7 +69,6 @@ const Notifications = () => {
 													variant="ghost"
 													size="icon"
 													onClick={() => navigate(`/issues/${item?._id}`)}
-													// onClick={() => navigate(`/hoas/${hoa?._id}`)}
 												>
 													<EllipsisVertical className="h-4 w-4" />
 												</Button>

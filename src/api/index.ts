@@ -18,6 +18,24 @@ export const fetchIndex = async (token: string) => {
 		return error;
 	}
 };
+export const fetchUserDetails = async (token: string, id: string) => {
+	const config = {
+		headers: {
+			Authorization: `Bearer ${token}`,
+		},
+	};
+	try {
+		console.log('index res', token);
+		const data = await axios
+			.get(`${apiUrl}/admins/users/${id}`, config)
+			.then((res) => res.data);
+		console.log('index res', data);
+		return data;
+	} catch (error: any) {
+		console.log(error.message);
+		return error;
+	}
+};
 export const fetchHoa = async (token: string) => {
 	const config = {
 		headers: {

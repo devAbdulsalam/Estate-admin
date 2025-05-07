@@ -90,7 +90,17 @@ const PaymentModal = ({
 													</p>
 													<p className="">
 														<span className="mb-1 font-semibold">Status: </span>
-														{data?.status}
+														<span
+															className={`p-1 px-2 rounded-md capitalize text-xs ${
+																data?.status === 'paid'
+																	? 'bg-green-100 text-green-800'
+																	: data?.status === 'pending'
+																	? 'bg-red-50 text-red-500'
+																	: 'bg-gray-100 text-gray-800'
+															}`}
+														>
+															{data?.status}
+														</span>
 													</p>
 												</div>
 											</div>

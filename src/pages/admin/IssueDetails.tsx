@@ -57,25 +57,37 @@ const Details = () => {
 					hoaId={id}
 				/>
 				<div className="max-w-4xl mx-auto px-4 py-12">
-					<img
-						src={data?.user?.profileImage?.url}
-						alt={data?.name}
-						className="w-full h-[400px] object-cover rounded-xl mb-8"
-					/>
+					<h1 className="text-2xl font-bold mb-6 capitalize">
+						{data?.category}
+					</h1>
 					<div className="flex items-center gap-4 mb-4 text-gray-600">
 						<div className="flex items-center gap-2">
 							<Calendar className="w-4 h-4" />
 							<span>{format(data?.createdAt || new Date(), 'dd/MM/yyyy')}</span>
 						</div>
 						<span>•</span>
-						<span>{data?.adminId?.name}</span>
-						<span>•</span>
-						<span className="text-ffms-primary">{data?.adminId?.email}</span>
+						<span className="text-ffms-primary">{data?.status}</span>
 					</div>
-					<h1 className="text-4xl font-bold mb-6">{data?.name}</h1>
+				</div>
+				<div>
+					<Card>
+						<CardHeader>
+							<div className="flex justify-between items-center">
+								<CardTitle>Issue Details</CardTitle>
+							</div>
+						</CardHeader>
+						<CardContent>
+							<h2 className="font-semibold">Reported By</h2>
+							<p className="">{data?.reportedBy.name}</p>
+							<h2 className="pt-2 font-semibold">Email</h2>
+							<p className="">{data?.reportedBy.email}</p>
+							<h2 className="pt-2 font-semibold">Reason</h2>
+							<p className="">{data?.reason}</p>
+						</CardContent>
+					</Card>
 				</div>
 				{/* Table Section */}
-				<div>
+				<div className='mt-2'>
 					<Card>
 						<CardHeader>
 							<div className="flex justify-between items-center">
@@ -90,7 +102,25 @@ const Details = () => {
 							</div>
 						</CardHeader>
 						<CardContent>
-							<div className="p-2 md:p-6">{}</div>
+							<div className="p-2 md:p-6">
+								{data?.replies?.map((item) => {
+									return (
+										<div className="mb-4">
+											<div className="flex items-center gap-4 mb-4 text-gray-600">
+												<div className="flex items-center gap-2">
+													<Calendar className="w-4 h-4" />
+													<span> {format(item.createdAt, 'dd/MM/yyyy')}</span>
+												</div>
+												<span>•</span>
+												<span>{item.adminId?.name}</span>
+											</div>
+											<h1 className="text-4xl font-bold mb-6">
+												{item.message}
+											</h1>
+										</div>
+									);
+								})}
+							</div>
 						</CardContent>
 					</Card>
 				</div>

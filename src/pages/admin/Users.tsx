@@ -73,7 +73,11 @@ const Users = () => {
 												{format(item?.updatedAt, 'MM/dd/yyyy')}
 											</TableCell>
 											<TableCell className="text-right">
-												<Button variant="ghost" size="icon">
+												<Button
+													variant="ghost"
+													size="icon"
+													onClick={() => navigate(`/users/${item?._id}`)}
+												>
 													<EllipsisVertical className="h-4 w-4" />
 												</Button>
 											</TableCell>

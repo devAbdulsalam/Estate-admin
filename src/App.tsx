@@ -22,7 +22,7 @@ import Settings from './pages/admin/Settings';
 import Payments from './pages/admin/Payments';
 import Payment from './pages/admin/Payment';
 import Users from './pages/admin/Users';
-import User from './pages/admin/User';
+import UserDetails from './pages/admin/UserDetails';
 import Invoices from './pages/admin/Invoices';
 import Issues from './pages/admin/Issues';
 import IssueDetails from './pages/admin/IssueDetails';
@@ -48,7 +48,7 @@ const App = () => (
 							<Route path="/" element={<DashboardLayout />}>
 								<Route path="/dashboard" element={<AdminDashboard />} />
 								<Route path="/users" element={<Users />} />
-								<Route path="/users/:id" element={<User />} />
+								<Route path="/users/:id" element={<UserDetails />} />
 								<Route path="/hoas" element={<Hoas />} />
 								<Route path="/hoas/:id" element={<HoaDetails />} />
 								<Route path="/payments" element={<Payments />} />

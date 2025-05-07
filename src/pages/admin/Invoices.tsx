@@ -90,7 +90,17 @@ const Invoices = () => {
 												{item?.description}
 											</TableCell> */}
 											<TableCell className="whitespace-nowrap">
-												{item?.status}
+												<span
+													className={`p-1 px-2 rounded-md capitalize text-xs ${
+														item?.status === 'paid'
+															? 'bg-green-100 text-green-800'
+															: item?.status === 'pending'
+															? 'bg-red-50 text-red-500'
+															: 'bg-gray-100 text-gray-800'
+													}`}
+												>
+													{item?.status}
+												</span>
 											</TableCell>
 											<TableCell>
 												{format(item?.updatedAt, 'MM/dd/yyyy')}

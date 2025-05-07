@@ -71,7 +71,19 @@ const Payments = () => {
 											>
 												{item?.amount}
 											</TableCell>
-											<TableCell>{item?.status}</TableCell>
+											<TableCell>
+												<span
+													className={`p-1 px-2 text-xs rounded-full capitalize ${
+														item.status === 'paid'
+															? 'bg-green-100 text-green-800'
+															: item.status === 'pending'
+															? 'bg-red-50 text-red-500'
+															: 'bg-gray-100 text-gray-800'
+													}`}
+												>
+													{item?.status}
+												</span>
+											</TableCell>
 											<TableCell>{format(item?.date, 'MM/dd/yyyy')}</TableCell>
 											<TableCell className="text-right">
 												<Button
