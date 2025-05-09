@@ -75,7 +75,7 @@ const UserDetails = () => {
 					</div>
 				</div>
 				{/* Table Section */}
-				<div>
+				{/* <div>
 					<Card>
 						<CardHeader>
 							<div className="flex justify-between items-center">
@@ -166,7 +166,7 @@ const UserDetails = () => {
 							</div>
 						</CardContent>
 					</Card>
-				</div>
+				</div> */}
 			</div>
 		</main>
 	);

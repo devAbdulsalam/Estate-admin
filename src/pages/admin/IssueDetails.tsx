@@ -87,7 +87,7 @@ const Details = () => {
 					</Card>
 				</div>
 				{/* Table Section */}
-				<div className='mt-2'>
+				{/* <div className='mt-2'>
 					<Card>
 						<CardHeader>
 							<div className="flex justify-between items-center">
@@ -123,7 +123,7 @@ const Details = () => {
 							</div>
 						</CardContent>
 					</Card>
-				</div>
+				</div> */}
 			</div>
 		</main>
 	);
