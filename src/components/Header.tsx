@@ -190,7 +190,7 @@ function Header({
 							>
 								<Menu.Items className="absolute w-[280px] top-full right-0 shadow-lg rounded-md bg-white py-5 px-5 z-10">
 									<div className="flex items-center space-x-3 border-b border-gray pb-3 mb-2">
-										<Link to={'./profile'} className="">
+										<Link to={'./settings'} className="">
 											<img
 												className="w-[50px] h-[50px] rounded-md"
 												src={user?.image?.url || userImage}
@@ -217,7 +217,7 @@ function Header({
 										</li>
 										<li>
 											<Link
-												to={'./profile'}
+												to={'./settings'}
 												className="px-5 py-2 w-full block hover:bg-gray rounded-md hover:text-theme text-base"
 											>
 												Account Settings

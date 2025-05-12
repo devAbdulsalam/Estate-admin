@@ -1,4 +1,4 @@
-# Welcome to your Onims project
+# Welcome to your xtate app project
 
 ## Project info
 
