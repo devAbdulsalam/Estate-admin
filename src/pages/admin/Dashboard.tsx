@@ -39,8 +39,10 @@ import {
 	TableRow,
 } from '@/components/ui/table';
 import { avatarImage } from '@/data';
+import { useNavigate } from 'react-router-dom';
 const AdminDashboard = () => {
 	const { tokens, setNotifications } = useAuth();
+		const navigate = useNavigate();
 	const { data } = useQuery({
 		queryKey: ['dashboard'],
 		queryFn: async () => fetchIndex(tokens?.token),
@@ -141,7 +143,7 @@ const AdminDashboard = () => {
 						<CardHeader>
 							<div className="flex justify-between items-center">
 								<CardTitle>Commission</CardTitle>
-								<Button variant="ghost" size="icon">
+								<Button variant="ghost" size="icon" onClick={() => navigate('/commission')}>
 									<MoreHorizontal className="h-4 w-4" />
 								</Button>
 							</div>

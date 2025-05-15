@@ -26,7 +26,7 @@ import UserDetails from './pages/admin/UserDetails';
 import Invoices from './pages/admin/Invoices';
 import Issues from './pages/admin/Issues';
 import IssueDetails from './pages/admin/IssueDetails';
-import Home from './pages/Home';
+import Commission from './pages/admin/Commission';
 
 const queryClient = new QueryClient();
 
@@ -48,6 +48,7 @@ const App = () => (
 							<Route path="/" element={<DashboardLayout />}>
 								<Route path="/dashboard" element={<AdminDashboard />} />
 								<Route path="/users" element={<Users />} />
+								<Route path="/commission" element={<Commission />} />
 								<Route path="/users/:id" element={<UserDetails />} />
 								<Route path="/hoas" element={<Hoas />} />
 								<Route path="/hoas/:id" element={<HoaDetails />} />
