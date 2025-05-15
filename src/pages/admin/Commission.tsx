@@ -78,7 +78,7 @@ const Commission = () => {
 							</div>
 						</CardContent>
 						<CardFooter className="text-xs bg-gray-200 text-center py-2 text-gray-500 mt-4">
-							{format(data?.commission?.updatedAt, 'MM/dd/yyyy')}
+							{format(data?.commission?.updatedAt || new Date(), 'MM/dd/yyyy')}
 						</CardFooter>
 					</Card>
 
@@ -100,7 +100,7 @@ const Commission = () => {
 							</div>
 						</CardContent>
 						<CardFooter className="text-xs bg-gray-200 text-center py-2 text-gray-500 mt-4">
-							{format(data?.commission?.updatedAt, 'MM/dd/yyyy')}
+							{format(data?.commission?.updatedAt || new Date(), 'MM/dd/yyyy')}
 						</CardFooter>
 					</Card>
 					<Card className="py-0">
@@ -124,7 +124,7 @@ const Commission = () => {
 							</div>
 						</CardContent>
 						<CardFooter className="text-xs bg-gray-200 text-center py-2 text-gray-500 mt-4 capitalize">
-							{format(data?.commission?.updatedAt, 'MM/dd/yyyy')}
+							{format(data?.commission?.updatedAt || new Date(), 'MM/dd/yyyy')}
 						</CardFooter>
 					</Card>
 				</div>
