@@ -146,7 +146,7 @@ const Modal = ({
 																<SelectValue placeholder="Choose" />
 															</SelectTrigger>
 														</FormControl>
-														<SelectContent>
+														<SelectContent className="z-10">
 															<SelectItem value="flat">Flat</SelectItem>
 															<SelectItem value="percentage">
 																Percentage
