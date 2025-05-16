@@ -187,7 +187,6 @@ const Modal = ({
 												</FormItem>
 											)}
 										/>
-
 										<div>
 											<FormLabel>Upload Logo</FormLabel>
 											<div

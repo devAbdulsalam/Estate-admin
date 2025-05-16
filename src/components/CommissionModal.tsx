@@ -1,7 +1,7 @@
 import React from 'react';
 import { CloseCircle } from 'iconsax-react';
 import { Dialog, DialogPanel, DialogBackdrop } from '@headlessui/react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
@@ -27,29 +27,31 @@ import {
 	FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 import { useAuth } from '@/contexts/AuthContext';
 
 const formSchema = z.object({
-	mode: z.string().min(2, 'Commission type is required'),
-	stage_of_plant: z.string().min(2, 'stage_of_plant type is required'),
+	commission_type: z.string().min(2, 'Commission type is required'),
 	amount: z.string().refine((val) => !isNaN(Number(val)) && Number(val) > 0, {
 		message: 'Amount must be a positive number',
 	}),
 });
+
 const Modal = ({
 	isOpen,
 	closeModal,
 	hoaId,
+	handelClick,
+	data,
 }: {
 	isOpen: boolean;
-	hoaId: string;
+	hoaId?: string;
 	closeModal: () => void;
+	handelClick?: () => void;
+	data?: any;
 }) => {
 	const [isLoading, setIsLoading] = useState<boolean>(false);
-	const [mode, setMode] = useState('flat');
+	const [commission_type, setCommission_type] = useState('flat');
 	const [isNotify, setIsNotify] = useState(false);
-
 	const { tokens } = useAuth();
 	const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -57,11 +59,20 @@ const Modal = ({
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
-			mode: '',
+			commission_type: 'flat', // Set default value
 			amount: '',
-			stage_of_plant: '',
 		},
 	});
+
+	// Update commission_type whenever form value changes
+	useEffect(() => {
+		const subscription = form.watch((value) => {
+			if (value.commission_type) {
+				setCommission_type(value.commission_type);
+			}
+		});
+		return () => subscription.unsubscribe();
+	}, [form.watch]);
 
 	const mutation = useMutation({
 		mutationFn: async ({ mode, amount }: { mode: string; amount: number }) => {
@@ -81,26 +92,32 @@ const Modal = ({
 			queryClient.invalidateQueries({
 				queryKey: ['hoas', 'dashboard', 'transactions', 'commission', hoaId],
 			});
-			toast.success('Commission updated successfully!');
+			toast.success('Commission updated successfully!', {
+				position: 'top-right',
+			});
 			form.reset(); // Reset form after success
 			closeModal(); // Close modal only on success
 		},
 		onError: (error) => {
 			const message = getError(error);
-			toast.error(message);
+			toast.error(message, {
+				position: 'top-right',
+			});
 		},
 	});
 
 	const onSubmit = async (values: z.infer<typeof formSchema>) => {
 		setIsLoading(true);
 		try {
-			const mode = values?.mode;
-			const amount = values?.amount;
+			const mode = values.commission_type;
+			const amount = values.amount;
 			// Trigger mutation
 			await mutation.mutateAsync({ mode, amount: parseFloat(amount) });
 		} catch (error) {
 			const message = getError(error);
-			toast.error(message);
+			toast.error(message, {
+				position: 'top-right',
+			});
 		} finally {
 			setIsLoading(false);
 		}
@@ -133,7 +150,7 @@ const Modal = ({
 									>
 										<FormField
 											control={form.control}
-											name="mode"
+											name="commission_type"
 											render={({ field }) => (
 												<FormItem>
 													<FormLabel>Commission Type</FormLabel>
@@ -142,11 +159,11 @@ const Modal = ({
 														defaultValue={field.value}
 													>
 														<FormControl>
-															<SelectTrigger>
-																<SelectValue placeholder="Choose" />
+															<SelectTrigger className="bg-white">
+																<SelectValue placeholder="Choose commission type" />
 															</SelectTrigger>
 														</FormControl>
-														<SelectContent className="z-10">
+														<SelectContent className="bg-white z-[9999]">
 															<SelectItem value="flat">Flat</SelectItem>
 															<SelectItem value="percentage">
 																Percentage
@@ -157,32 +174,41 @@ const Modal = ({
 												</FormItem>
 											)}
 										/>
+
 										<FormField
 											control={form.control}
 											name="amount"
 											render={({ field }) => (
 												<FormItem>
 													<FormLabel>
-														{mode === 'flat' ? 'Amount' : 'Percentage'}
+														{commission_type === 'flat'
+															? 'Amount'
+															: 'Percentage'}
 													</FormLabel>
 													<FormControl>
 														<Input
-															placeholder={mode === 'flat' ? '₦ Amount' : '%'}
+															placeholder={
+																commission_type === 'flat' ? '₦ Amount' : '%'
+															}
 															{...field}
+															className="bg-white"
 														/>
 													</FormControl>
 													<FormMessage />
 												</FormItem>
 											)}
 										/>
-										<div className="flex items-center  gap-2">
+										<div className="flex items-center gap-2">
 											<input
 												type="checkbox"
 												className="h-4 w-4"
 												checked={isNotify}
 												onChange={() => setIsNotify(!isNotify)}
+												id="notify-checkbox"
 											/>
-											<p>Notify Hoas this update</p>
+											<label htmlFor="notify-checkbox">
+												Notify Hoas this update
+											</label>
 										</div>
 										<Button
 											disabled={isLoading}
