@@ -253,7 +253,7 @@ export const fetchIssues = async (token: string) => {
 		return error;
 	}
 };
-export const fetchTransactions = async (token: string) => {
+export const fetchCommissions = async (token: string) => {
 	const config = {
 		headers: {
 			Authorization: `Bearer ${token}`,
@@ -262,7 +262,7 @@ export const fetchTransactions = async (token: string) => {
 	try {
 		// console.log('index res', token);
 		const data = await axios
-			.get(`${apiUrl}/admins/transactions`, config)
+			.get(`${apiUrl}/admins/commissions`, config)
 			.then((res) => res.data);
 		// console.log('index res', data);
 		return data;

@@ -90,7 +90,7 @@ const Modal = ({
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ['hoas', hoaId] });
 			queryClient.invalidateQueries({
-				queryKey: ['hoas', 'dashboard', 'transactions', 'commission', hoaId],
+				queryKey: ['hoas', 'dashboard', 'transactions', 'commissions', hoaId],
 			});
 			toast.success('Commission updated successfully!', {
 				position: 'top-right',

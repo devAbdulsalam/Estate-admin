@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { useAuth } from '@/contexts/AuthContext';
-import { fetchTransactions } from '@/api';
+import { fetchCommissions } from '@/api';
 import {
 	Card,
 	CardContent,
@@ -17,17 +17,10 @@ import {
 	TableHeader,
 	TableRow,
 } from '@/components/ui/table';
-import { avatarImage } from '@/data';
-import {
-	EllipsisVertical,
-	TrendingUp,
-	MoreHorizontal,
-	Plus,
-} from 'lucide-react';
+import { EllipsisVertical, TrendingUp, Plus } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { format } from 'date-fns';
-import { userRoles } from '../../../../server/Enum/index';
 import CommissionModal from '@/components/CommissionModal';
 
 const Commission = () => {
@@ -35,19 +28,14 @@ const Commission = () => {
 	const [payments, setPayments] = useState([]);
 	const [details, setDetails] = useState(null);
 	const [paymentModal, setPaymentModal] = useState(false);
-	const navigate = useNavigate();
+	// const navigate = useNavigate();
 	const { data } = useQuery({
-		queryKey: ['transactions'],
-		queryFn: async () => fetchTransactions(tokens?.token),
+		queryKey: ['commissions'],
+		queryFn: async () => fetchCommissions(tokens?.token),
 	});
 	useEffect(() => {
 		setPayments(null);
 	}, []);
-	const handlePaymentDetails = (item: any) => {
-		setDetails(item);
-		setPaymentModal(true);
-	};
-
 	return (
 		<div className="min-h-screen bg-white">
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -70,7 +58,9 @@ const Commission = () => {
 						</CardHeader>
 						<CardContent>
 							<div className="flex justify-between">
-								<div className="text-2xl font-bold">60000</div>
+								<div className="text-2xl font-bold">
+									{data?.totalCommission}
+								</div>
 								<div className="flex bg-green-50 rounded-md items-center gap-2 px-2 py-1">
 									<TrendingUp className="h-4 w-4 text-green-500" />
 									<div className="text-green-500 text-sm mt-2">10%</div>
@@ -91,7 +81,7 @@ const Commission = () => {
 						<CardContent>
 							<div className="flex justify-between">
 								<div className="text-2xl font-bold">
-									{data?.commission?.amount}
+									{data?.thisMonthCommission || '0'}
 								</div>
 								<div className="flex bg-green-50 rounded-md items-center gap-2 px-2 py-1">
 									<TrendingUp className="h-4 w-4 text-green-500" />
@@ -112,19 +102,23 @@ const Commission = () => {
 						<CardContent>
 							<div className="flex justify-between">
 								<div className="text-2xl font-bold">
-									{data?.commission?.mode === 'flat' ? '₦' : '%'}
-									{data?.commission?.amount}
+									{data?.commissionSetting?.mode === 'flat'
+										? `₦${data?.commissionSetting?.amount}`
+										: `${data?.commissionSetting?.amount}%`}
 								</div>
 								<div className="flex bg-green-50 rounded-md items-center gap-2 px-2 py-1">
 									<TrendingUp className="h-4 w-4 text-green-500" />
 									<div className="text-green-500 text-sm mt-2 capitalize">
-										{data?.commission?.mode === 'flat' ? '₦' : '%'}
+										{data?.commissionSetting?.mode === 'flat' ? '₦' : '%'}
 									</div>
 								</div>
 							</div>
 						</CardContent>
 						<CardFooter className="text-xs bg-gray-200 text-center py-2 text-gray-500 mt-4 capitalize">
-							{format(data?.commission?.updatedAt || new Date(), 'MM/dd/yyyy')}
+							{format(
+								data?.commissionSetting?.updatedAt || new Date(),
+								'MM/dd/yyyy'
+							)}
 						</CardFooter>
 					</Card>
 				</div>
@@ -134,50 +128,27 @@ const Commission = () => {
 						<Table>
 							<TableHeader>
 								<TableRow>
-									<TableHead className="w-[300px] whitespace-nowrap">
-										OrderId
-									</TableHead>
-									<TableHead className="w-[300px] whitespace-nowrap">
-										Amount
-									</TableHead>
-									<TableHead>Status</TableHead>
+									<TableHead className="whitespace-nowrap">User</TableHead>
+									<TableHead className="whitespace-nowrap">Total</TableHead>
+									<TableHead>Commission</TableHead>
+									<TableHead>Amount</TableHead>
 									<TableHead>Date</TableHead>
 									<TableHead className="text-center">Actions</TableHead>
 								</TableRow>
 							</TableHeader>
 							<TableBody>
-								{data?.length > 0 &&
-									data?.map((item) => (
+								{data?.commissions?.length > 0 &&
+									data?.commissions?.map((item) => (
 										<TableRow key={item?._id}>
-											<TableCell className="cursor-pointer">
+											<TableCell className="cursor-pointer whitespace-nowrap">
 												{item?.user?.name}
 											</TableCell>
-											<TableCell
-												className=""
-												onClick={() => navigate(`/payments/${item?._id}`)}
-											>
-												{item?.amount}
-											</TableCell>
-											<TableCell>
-												<span
-													className={`p-1 px-2 text-xs rounded-full capitalize ${
-														item.status === 'paid'
-															? 'bg-green-100 text-green-800'
-															: item.status === 'pending'
-															? 'bg-red-50 text-red-500'
-															: 'bg-gray-100 text-gray-800'
-													}`}
-												>
-													{item?.status}
-												</span>
-											</TableCell>
+											<TableCell>{item?.amount}</TableCell>
+											<TableCell>{item?.commissionAmount}</TableCell>
+											<TableCell>{item?.actualAmount}</TableCell>
 											<TableCell>{format(item?.date, 'MM/dd/yyyy')}</TableCell>
 											<TableCell className="text-right">
-												<Button
-													variant="ghost"
-													size="icon"
-													onClick={() => handlePaymentDetails(item)}
-												>
+												<Button variant="ghost" size="icon">
 													<EllipsisVertical className="h-4 w-4" />
 												</Button>
 											</TableCell>
